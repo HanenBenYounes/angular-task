@@ -1,0 +1,63 @@
+<div class="container h-100 w-75 mt-5">
+    <form [formGroup]="inscriptionFrom" (ngSubmit)="ajouter()">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                Name :
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" formControlName="name" required>
+                   <div *ngIf="fname.touched && fname.hasError('required')" class="alert alert-danger" role="alert">
+                    Name is required
+                   </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                Email :
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" formControlName="email" required>
+                <div *ngIf="femail.touched && femail.hasError('required')" class="alert alert-danger" role="alert">
+                    Email is required
+               </div>
+               <div *ngIf="femail.hasError('email')" class="alert alert-danger" role="alert">
+                Email must be a valid email address
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                Password :
+            </div>
+            <div class="col-md-6">
+                <input type="password" class="form-control" formControlName="password" required>
+            </div>
+            <div *ngIf="fpassword.touched && fpassword.hasError('required')" class="alert alert-danger" role="alert">
+                Password is required
+           </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                Repeat Password :
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" formControlName="repeatpassword" required>
+            </div>
+            <div *ngIf="frepeatpassword.touched &&  frepeatpassword.hasError('required')" class="alert alert-danger" role="alert">
+                Repeat password is required
+           </div>
+           <div *ngIf="frepeatpassword.touched && frepeatpassword.value != fpassword.value " class="alert alert-danger" role="alert">
+                password and repeat password are not the same
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary" [disabled]="inscriptionFrom.invalid" (click)="ajouter()">Add</button>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+    </form>
+</div>
+
+
